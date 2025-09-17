@@ -1,0 +1,30 @@
+<%= form_with(model: sale, data: { controller: "nested-form" }) do |form| %>
+  <div class="field">
+    <%= form.label :client_name, "Nombre del Cliente" %>
+    <%= form.text_field :client_name %>
+  </div>
+
+  <hr>
+  <h3>Productos</h3>
+
+  <div data-nested-form-target="target">
+    <%= form.fields_for :sale_items do |item_form| %>
+      <%= render "sale_item_fields", form: item_form %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "Agregar Producto", "#", data: { action: "nested-form#add" } %>
+  </div>
+
+  <template data-nested-form-target="template">
+    <%= form.fields_for :sale_items, SaleItem.new, child_index: "NEW_RECORD" do |item_form| %>
+      <%= render "sale_item_fields", form: item_form %>
+    <% end %>
+  </template>
+
+  <hr>
+  <div class="actions">
+    <%= form.submit "Guardar Venta" %>
+  </div>
+<% end %>

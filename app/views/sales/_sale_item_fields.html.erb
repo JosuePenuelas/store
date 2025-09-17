@@ -1,0 +1,16 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= form.label :product_id, "Producto" %>
+    <%= form.collection_select :product_id, Product.all, :id, :name, { prompt: "Seleccionar un producto" } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity, "Cantidad" %>
+    <%= form.number_field :quantity, min: 1 %>
+  </div>
+
+  <%= form.hidden_field :_destroy %>
+
+  <%= link_to "Eliminar", "#", data: { action: "nested-form#remove" } %>
+  <hr>
+</div>

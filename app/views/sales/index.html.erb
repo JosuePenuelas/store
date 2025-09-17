@@ -1,0 +1,14 @@
+<h1>Sales</h1>
+
+<%# Este es el enlace que "llama" al formulario nuevo %>
+<%= link_to "New Sale", new_sale_path, class: "btn btn-primary" %>
+
+<div id="sales">
+  <% @sales.each do |sale| %>
+    <div>
+      <h2><%= link_to sale.client_name, sale_path(sale) %></h2>
+    </div>
+  <% end %>
+
+</div>
+

@@ -1,0 +1,18 @@
+<h1><%= @sale.client_name %></h1>
+
+<p><strong>Client name:</strong> <%= @sale.client_name %></p>
+<p><strong>Total:</strong> $<%= @sale.total %></p>
+<h3>Items:</h3>
+<ul>
+  <% @sale.sale_items.each do |item| %>
+    <li>
+      <%= item.product.name %> - Cantidad: <%= item.quantity %> - Precio Unitario: $<%= item.unit_price %> - Subtotal: $<%= item.subtotal %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Back", sales_path %>
+<% if authenticated? %>
+  <%= link_to "Edit", edit_sale_path(@sale) %>
+  <%= button_to "Delete", @sale, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<% end %>
