@@ -1,4 +1,5 @@
 class SalesController < ApplicationController
+  allow_unauthenticated_access only: %i[ index show ]
   before_action :set_sale, only: %i[ show edit update destroy ]
   def new
     @sale = Sale.new
@@ -16,6 +17,7 @@ class SalesController < ApplicationController
 
   def index
     @sales = Sale.all
+    render json: @sales
   end
 
   def show
